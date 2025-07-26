@@ -1,6 +1,5 @@
 import 'package:google_map_polyutil/gmp.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:meta/meta.dart';
 
 /// A helper class regarding Google map native android utility class "PolyUtil".
 /// For brief documentation from native class goto
@@ -16,16 +15,12 @@ class GoogleMapPolyUtil {
   /// geodesic is true, and of rhumb (loxodromic) segments
   /// otherwise.
   ///
-  static Future<bool> containsLocation(
-          {@required LatLng point,
-          @required List<LatLng> polygon,
-          bool geodesic = true}) =>
+  static Future<bool> containsLocation({required LatLng point, required List<LatLng> polygon, bool geodesic = true}) =>
       GMP.containsLocation(point, polygon, geodesic);
 
   /// Decodes an encoded path string into a sequence of LatLngs.
   ///
-  static Future<List<LatLng>> decode({@required String encodedPath}) =>
-      GMP.decode(encodedPath);
+  static Future<List<LatLng>> decode({required String encodedPath}) => GMP.decode(encodedPath);
 
   /// Computes the distance on the sphere between the point p
   /// and the line segment start to end.
@@ -34,24 +29,18 @@ class GoogleMapPolyUtil {
   /// * _[start]_ - the beginning of line segment.
   /// * _[end]_ - the end of the line segment.
   ///
-  static Future<double> distanceToLine(
-          {@required LatLng point,
-          @required LatLng start,
-          @required LatLng end}) =>
-      GMP.distanceToLine(point, start, end);
+  static Future<double> distanceToLine({required LatLng point, required LatLng start, required LatLng end}) => GMP.distanceToLine(point, start, end);
 
   /// Encodes a sequence of LatLngs into an encoded path string.
   ///
-  static Future<String> encode({@required List<LatLng> path}) =>
-      GMP.encode(path);
+  static Future<String> encode({required List<LatLng> path}) => GMP.encode(path);
 
   /// Returns true if the provided list of points is a closed polygon
   /// (i.e., the first and last points are the same), and false if it is not
   /// ### Parameters:
   /// * _[poly]_ -  polyline or polygon.
   ///
-  static Future<bool> isClosedPolygon({@required List<LatLng> poly}) =>
-      GMP.isClosedPolygon(poly);
+  static Future<bool> isClosedPolygon({required List<LatLng> poly}) => GMP.isClosedPolygon(poly);
 
   /// Computes whether the given point lies on or near the edge of a polygon,
   /// within a specified tolerance in meters. The polygon edge is composed of
@@ -59,11 +48,12 @@ class GoogleMapPolyUtil {
   /// otherwise. The polygon edge is implicitly closed -- the closing segment
   /// between the first point and the last point is included.
   ///
-  static Future<bool> isLocationOnEdge(
-          {@required LatLng point,
-          List<LatLng> polygon,
-          bool geodesic = true,
-          double tolerance = 100}) =>
+  static Future<bool> isLocationOnEdge({
+    required LatLng point,
+    required List<LatLng> polygon,
+    bool geodesic = true,
+    double tolerance = 100,
+  }) =>
       GMP.isLocationOnEdge(point, polygon, geodesic, tolerance);
 
   /// Computes whether the given point lies on or near a polyline, within a
@@ -72,11 +62,12 @@ class GoogleMapPolyUtil {
   /// is not closed -- the closing segment between the first point and the last
   /// point is not included.
   ///
-  static Future<bool> isLocationOnPath(
-          {@required LatLng point,
-          List<LatLng> polygon,
-          bool geodesic = true,
-          double tolerance = 200}) =>
+  static Future<bool> isLocationOnPath({
+    required LatLng point,
+    required List<LatLng> polygon,
+    bool geodesic = true,
+    double tolerance = 200,
+  }) =>
       GMP.isLocationOnPath(point, polygon, geodesic, tolerance);
 
   /// Simplifies the given poly (polyline or polygon) using the Douglas-Peucker
@@ -93,7 +84,5 @@ class GoogleMapPolyUtil {
   /// * _[tolerance]_ - in meters. Increasing the tolerance will result in fewer
   /// points in the simplified poly.
   ///
-  static Future<List<LatLng>> simplify(
-          {@required List<LatLng> poly, @required double tolerance}) =>
-      GMP.simplify(poly, tolerance);
+  static Future<List<LatLng>> simplify({required List<LatLng> poly, required double tolerance}) => GMP.simplify(poly, tolerance);
 }
